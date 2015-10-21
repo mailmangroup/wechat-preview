@@ -1,7 +1,7 @@
 /*
  * WeChat Preview
  * Author: Fergus Jordan
- * Version: 1.0.0
+ * Version: 1.0.1
  *
  * Preview of content in WeChat's iOS app
  */
