@@ -6,6 +6,12 @@
  	font-family: -apple-system, '-apple-system', 'Helvetica Neue', PingFang-SC-Regular, 'Lucida Grande', sans-serif;
  }
 
+.wcp,
+.wcp *,
+.wcp-content-wrapper * {
+ 	box-sizing: border-box;
+ }
+
  .wcp-content-wrapper span {
  	font-size: 14px;
  }
