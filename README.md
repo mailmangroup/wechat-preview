@@ -142,7 +142,7 @@ The above example will generate a DOM element in between the two articles.
 
 Type: `string`
 
-Default: `Article Title`
+Default: `微博正文`
 
 The article title is the title of each individual article.
 
@@ -150,7 +150,7 @@ The article title is the title of each individual article.
 
 Type: `string`
 
-Default: `Lorem ipsum dolor sit amet sit amor`
+Default: `摘要`
 
 This will be the description of each individual article, this will only be visible on specific classes of articles.
 
