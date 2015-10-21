@@ -1,7 +1,7 @@
 /*
  * WeChat Preview
  * Author: Fergus Jordan
- * Version: 1.0.1
+ * Version: 1.0.2
  *
  * Preview of content in WeChat's iOS app
  */
@@ -89,8 +89,16 @@
 
 	}
 
-	// TODO: REGEX TO WRAP ENGLISH IN TITLE IN SPANS FOR LETTER SPACING
+	// REGEX TO WRAP ENGLISH IN SPANS FOR LETTER SPACING
 	// ===============================================================================
+	function englishCharSpacing ( string ) {
+
+		return string = string.replace( /(\w+)([\w\s#!:,.?+=&%@!\-\/]+)?/g, function( match ) {
+			return '<span class="wcp-en">' + match + '</span>';
+		});
+
+	}
+
 
 	// DECLARE CREATE ELEMENT FUNCTION
 	// ===============================================================================
@@ -202,14 +210,14 @@
 			if ( articleContent ) {
 				
 				// SET ARTICLE TITLE
-				articleTitle.innerHTML = articleContent.title;
+				articleTitle.innerHTML = englishCharSpacing( articleContent.title );
 
 				// SET ARTICLE DATE
 				articleDateEl.innerHTML = this.articleDate;
 
 				// SET ARTICLE IMAGE
 				var articleImage = createElement( 'img', false, articleImageEl );
-					articleImage.setAttribute( 'src', articleContent.image );
+				if ( articleContent.image )	articleImage.setAttribute( 'src', articleContent.image );
 
 				// SET ARTICLE DESCRIPTION
 				articleDescriptionEl.innerHTML = articleContent.description;

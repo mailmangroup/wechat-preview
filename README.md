@@ -1,5 +1,5 @@
 # wechat-preview
-[![wechat-preview version](https://img.shields.io/badge/wechat--preview-v1.0.1-brightgreen.svg)](https://github.com/mailmangroup/wechat-preview/) [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+[![wechat-preview version](https://img.shields.io/badge/wechat--preview-v1.0.2-brightgreen.svg)](https://github.com/mailmangroup/wechat-preview/) [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 ## Introduction
 To support WeChat, we had to build a live preview of how the post would look that could be used within our app. This would allow us to simulate and build upon the already existing user experience that WeChat has internally.
@@ -33,15 +33,15 @@ require( [ 'wechatPreview' ], function( wechatPreview ) {
 
 ## Usage
 ```javascript
-var preview = new wechatPreview({ ... }, { ... });
+var preview = new wechatPreview({ build });
 
 // returns preview.el
 // document.body.appendChild( preview.el );
 
-preview.generate({ ... });
+preview.generate({ content });
 ```
 
-## API
+## Parameters
 
 ### Build
 
@@ -82,6 +82,12 @@ Whitelisted screen size strings:
 - iPhone 5
 - iPhone 6
 - iPhone 6 Plus
+
+Example of `build.container` as a whitelist iPhone string:
+
+```javascript
+var build = container: 'iphone4'
+```
 
 ## wechatPreview.content Options
 

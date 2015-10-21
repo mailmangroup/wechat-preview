@@ -16,6 +16,12 @@
  	font-size: 14px;
  }
 
+.wcp-normal,
+.wcp-single,
+.wcp-top {
+	max-width: 288px;
+}
+
 /* ARTICLE CONTAINER
  * ========================================================================= */
 
@@ -169,6 +175,12 @@
 	box-shadow: 0px 0px 0px 0.5px rgba( 0,0,0,0.2 );
 }
 
+.wcp-content-wrapper .wcp-normal,
+.wcp-content-wrapper .wcp-single,
+.wcp-content-wrapper .wcp-top {
+	max-width: 100%;
+} 
+
 .wcp-content-wrapper:last-of-type {
 	margin-bottom: 15px;
 }
@@ -208,6 +220,10 @@
 	background-color: transparent;
 	word-break: break-word;
 	-webkit-font-smoothing: antialiased;
+}
+
+.wcp-article .wcp-article-title span {
+	font-size: inherit;
 }
 
 .wcp-article .wcp-article-image img {
@@ -319,10 +335,6 @@
 	color: #000;
 	background-color: transparent;
 	padding: 0;
-}
-
-.wcp-single .wcp-aritlce-title span {
-	font-size: 18px;
 }
 
 .wcp-single .wcp-article-title .wcp-en {
