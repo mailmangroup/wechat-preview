@@ -1,0 +1,769 @@
+/* GENERAL
+ * ========================================================================= */
+
+ .wcp,
+ .wcp-content-wrapper {
+ 	font-family: -apple-system, '-apple-system', 'Helvetica Neue', PingFang-SC-Regular, 'Lucida Grande', sans-serif;
+ }
+
+ .wcp-content-wrapper span {
+ 	font-size: 14px;
+ }
+
+/* ARTICLE CONTAINER
+ * ========================================================================= */
+
+.wcp-iphone4 {
+	max-width: 320px;
+	min-width: 320px;
+}
+
+.wcp-iphone5 {
+	max-width: 320px;
+	min-width: 320px;
+}
+
+.wcp-iphone6 {
+	max-width: 375px;
+	min-width: 375px;
+}
+
+.wcp-iphone6plus {
+	max-width: 414px;
+	min-width: 414px;
+}
+
+.wcp.wcp-iphone4 {
+	min-height: 480px;
+}
+
+.wcp.wcp-iphone5 {
+	min-height: 568px;
+}
+
+.wcp.wcp-iphone6 {
+	min-height: 667px;
+}
+
+.wcp.wcp-iphone6plus {
+	min-height: 736px;
+}
+
+.wcp {
+	background-color: #EBEBEB;
+	position: relative;
+
+	-webkit-align-items: flex-start;
+	-ms-align-items: flex-start;
+	align-items: flex-start;
+
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.wcp .wcp-top-bar {
+	background-color: #131313;
+	width: 100%;
+	max-height: 64px;
+
+	-webkit-align-items: flex-start;
+	-ms-align-items: flex-start;
+	align-items: flex-start;
+
+	-webkit-flex: 1 0 64px;
+	-ms-flex: 1 0 64px;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: 64px;
+}
+
+.wcp .wcp-bottom-bar {
+	background-color: #FAFAFA;
+	width: 100%;
+	position: relative;
+	max-height: 50px;
+
+	-webkit-flex: 1 0 50px;
+	-ms-flex: 1 0 50px;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: 50px;
+}
+
+.wcp .wcp-bottom-bar:before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	top: 0;
+	left: 0;
+	background-image: linear-gradient(to bottom, #A6A6A6 0%, #A6A6A6 51%, transparent 51%);
+    background-size: 100% 1px;
+}
+
+.wcp,
+.wcp-main,
+.wcp-article {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.wcp-main {
+	width: 100%;
+	overflow-y: scroll;
+
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: auto;
+
+	-webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+}
+
+.wcp-main::-webkit-scrollbar {
+	display: none;
+}
+
+.wcp-post-wrapper {
+	text-align: center;
+	width: 100%;
+	background-color: #EBEBEB;
+}
+
+.wcp-timestamp {
+	display: inline-block;
+	margin: 25px 0 0;
+	padding: 0 5px;
+	max-height: 20px;
+	background: rgba( 0, 0, 0, .12 );
+	border-radius: 5px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 20px;
+	color: #FFF;
+	font-weight: 300;
+	letter-spacing: 0.5px;
+}
+
+.wcp-content-wrapper {
+	max-width: 100%;
+	min-height: 100px;
+	background: white;
+	margin: 18px 16px 0;
+	position: relative;
+	border-radius: 6px;
+	padding: 12px 0;
+	text-align: left;
+	box-shadow: 0px 0px 0px 0.5px rgba( 0,0,0,0.2 );
+}
+
+.wcp-content-wrapper:last-of-type {
+	margin-bottom: 15px;
+}
+
+/* GENERAL ARTICLE
+ * ========================================================================= */
+
+.wcp-article {
+	padding: 0 10px 10px;
+	border-top: none;
+	position: relative;
+
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.wcp-article p {
+	font-size: 16px;
+	line-height: 21px;
+	margin: 0;
+	font-weight: 300;
+	color: #000;
+	background: transparent;
+	height: auto;
+	display: inline-block;
+}
+
+.wcp-article .wcp-article-title {
+	padding: 0;
+	position: relative;
+}
+
+.wcp-article .wcp-article-title p {
+	padding: 0;
+	color: #000;
+	background-color: transparent;
+	word-break: break-word;
+	-webkit-font-smoothing: antialiased;
+}
+
+.wcp-article .wcp-article-image img {
+	width: 100%;
+	min-height: 100%;
+	position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-user-drag: none;
+	-moz-user-select: none; 
+	user-drag: none; 
+}
+
+.wcp-article .wcp-article-image,
+.wcp-normal-to-wcp-top .wcp-article-image {
+	width: 100%;
+	max-width: 100%;
+	position: relative;
+	height: 150px;
+	margin-left: 0;
+	overflow: hidden;
+
+	-webkit-flex: 1 0 auto;
+	-ms-flex: 1 0 auto;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: auto;
+}
+
+.wcp-iphone6 .wcp-article .wcp-article-image,
+.wcp-iphone6 .wcp-normal-to-wcp-top .wcp-article-image {
+	height: 179px;
+}
+
+.wcp-article-date,
+.wcp-article-description,
+.wcp-read-all {
+	max-height: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	-webkit-flex: 0;
+	-ms-flex: 0;
+    flex: 0;
+}
+
+
+.wcp-article-date {
+	font-size: 12px;
+	color: #888;
+	font-weight: 300;
+}
+
+.wcp-article-description {
+	color: #747474;
+	line-height: 17px;
+	font-weight: 300;
+	-webkit-font-smoothing: antialiased;
+}
+
+.wcp-read-all {
+	position: relative;
+}
+
+.wcp-read-all:before,
+.wcp-read-all:after {
+	content: '';
+	height: 2px;
+	width: 7px;
+	background: #999;
+	position: absolute;
+	right: -1px;
+}
+
+.wcp-read-all:before {
+	-webkit-transform: rotate( 45deg );
+	transform: rotate( 45deg );
+	top: 14px;
+}
+
+.wcp-read-all:after {
+	top: 18px;
+	-webkit-transform: rotate( -45deg );
+	transform: rotate( -45deg );
+}
+
+/* SINGLE ARTICLE
+ * ========================================================================= */
+
+.wcp-single {
+	padding-bottom: 0;
+	min-height: 280px;
+}
+
+.wcp-single .wcp-article-title {
+	padding: 0;
+	bottom: 0;
+	-webkit-transform: translateY( 0 );
+	transform: translateY( 0 );
+	letter-spacing: 2px;
+	margin: -1px 0 0 0;
+	padding-bottom: 0 !important;
+}
+
+.wcp-single .wcp-article-title p {
+	color: #000;
+	background-color: transparent;
+	padding: 0;
+}
+
+.wcp-single .wcp-aritlce-title span {
+	font-size: 18px;
+}
+
+.wcp-single .wcp-article-title .wcp-en {
+ 	letter-spacing: 0px;
+ }
+
+.wcp-single .wcp-article-title .wcp-zh {
+ 	letter-spacing: 2px;
+ }
+
+.wcp-single .wcp-article-image {
+	width: 100%;
+}
+
+.wcp-single .wcp-read-all {
+	border-top: 1px solid #F1F1F1;
+	overflow: visible;
+	padding-top: 8px;
+}
+
+.wcp-single .wcp-article-date {
+	margin: 6px 0 15px;
+}
+
+.wcp-single .wcp-article-description {
+	margin: 16px 0 12px;
+}
+
+.wcp-single .wcp-article-description,
+.wcp-single .wcp-article-date,
+.wcp-single .wcp-read-all,
+.wcp-gallery .wcp-article .wcp-article-description {
+	max-height: 500px;
+	width: auto;
+	display: block;
+}
+
+
+/* TOP ARTICLE
+ * ========================================================================= */
+
+.wcp-top {
+	min-height: 150px;
+}
+
+.wcp-top .wcp-article-title,
+.wcp-normal-to-wcp-top .wcp-article-title {
+	width: 100%;
+	left: 0;
+	padding: 0 10px;
+	position: absolute;
+	z-index: 15;
+	bottom: 10px;
+	padding-bottom: 0 !important;
+}
+
+.wcp-top .wcp-article-title p,
+.small-to-large .wcp-article-title p {
+	padding: 5px;
+	margin: 0;
+	color: #FFF;
+	font-size: 18px;
+	font-weight: 300;
+	background-color: rgba( 0, 0, 0, 0.8 );
+	display: block;
+}
+
+/* NORMAL ARTICLE
+ * ========================================================================= */
+
+.wcp-normal {
+	min-height: 61px;
+}
+
+.wcp-normal .wcp-article-title {
+	margin-top: 2px;
+}
+
+.wcp-normal .wcp-article-title p {
+	line-height: 18px;
+}
+
+.wcp-normal,
+.wcp-top-to-wcp-normal {
+	padding: 5px 10px;
+	margin: 0px 1px;
+	margin: 0px 0.5px;
+	border-top: 1px solid #F1F1F1;
+	position: relative;
+    z-index: 10;
+
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.wcp-normal .wcp-article-title
+.wcp-normal .wcp-article-image {
+	-webkit-align-self: auto;
+	-ms-align-self: auto;
+	align-self: auto;
+}
+
+.wcp-normal .wcp-article-title,
+.wcp-top-to-wcp-normal .wcp-article-title {
+	background: transparent;
+	z-index: 15;
+
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: auto;
+
+	-webkit-align-self: center;
+	-ms-align-self: center;
+	align-self: center;
+}
+
+.wcp-normal .wcp-article-image,
+.wcp-top-to-wcp-normal .wcp-article-image {
+	background-color: #EEE;
+	width: 50px;
+	max-width: 50px;
+	height: 50px;
+	margin-left: 15px;
+}
+
+.wcp-iphone6 .wcp-normal .wcp-article-image,
+.wcp-iphone6 .wcp-top-to-wcp-normal .wcp-article-image {
+	height: 50px;
+}
+
+.wcp-normal:last-of-type {
+	padding-bottom: 0;
+}
+
+/* GALLERY POST
+ * ========================================================================= */
+
+.wcp-gallery {
+	min-width: 286px;
+	max-width: 339px;
+	max-height: 303px;
+}
+
+.wcp-gallery .wcp-article {
+	padding-bottom: 0;
+}
+
+.wcp-gallery .wcp-article .wcp-article-image {
+	max-height: 150px;
+}
+
+.wcp-gallery .wcp-article .wcp-article-description {
+	max-height: 36px;
+	width: 100%;
+	max-width: 100%;
+	display: block;
+	overflow: hidden;
+}
+
+.wcp-gallery .wcp-article .wcp-article-title {
+	margin: 0 0 16px 0;
+	max-height: 63px;
+	overflow: hidden;
+}
+
+.wcp-gallery .wcp-article .wcp-article-description {
+	margin: 16px 0 0 0;
+}
+
+/* EMPTY POST
+ * ========================================================================= */
+
+.wcp-empty .wcp-timestamp {
+	height: 20px;
+	min-width: 125px;
+}
+
+.wcp-empty .wcp-article .wcp-article-title p {
+	min-height: 15px;
+	min-width: 125px;
+	background-color: #F2F2F2;
+}
+
+.wcp-empty .wcp-article .wcp-article-date {
+	height: 8px;
+	width: 80px;
+	background-color: #F2F2F2;
+}
+
+.wcp-empty .wcp-article .wcp-article-image {
+	background-image: none;
+	background-color: #F2F2F2;
+}
+
+.wcp-empty .wcp-article .wcp-text-line {
+	background-color: #F2F2F2;
+	width: 100%;
+	height: 8px;
+	margin-bottom: 7px;
+}
+
+.wcp-empty .wcp-article .wcp-text-line:last-of-type {
+	margin-bottom: 0px;
+	width: 50%;
+}
+
+.wcp-empty .wcp-article .wcp-read-all span {
+	background-color: #F2F2F2;
+	width: 50px;
+	height: 8px;
+	display: block;
+	margin: 3px 0;
+}
+
+/* SHADOW POST
+ * ========================================================================= */
+
+.wcp-shadow {
+	margin: 0;
+	flex-direction: column;
+}
+
+.wcp-shadow-content {
+	border: 2px dashed #CCC;
+	width: 100%;
+	flex: 1 0 auto;
+}
+
+.wcp-single .wcp-shadow-content {
+	margin: 10px 0;
+}
+
+.wcp-top .wcp-shadow-content {
+	margin-top: 10px;
+	min-height: 140px;
+}
+
+.wcp-normal:last-of-type .wcp-shadow-content {
+	margin-bottom: 5px;
+}
+
+/* TRANSITIONS
+ * ========================================================================= */
+
+/* DECLARE ANIMATIONS
+ * ========================================================================= */
+
+@-webkit-keyframes absoluteDown {
+	from	{ position: absolute; bottom: -100px; -webkit-transform: translateY(-100px); }
+	to		{ position: absolute; bottom: 0; -webkit-transform: translateY(-10px); }
+}
+
+@keyframes absoluteDown {
+	from	{ position: absolute; bottom: 0; left: 0; z-index: 15; padding: 0 10px; transform: translateY(-100px); }
+	to		{ position: absolute; bottom: 0; left: 0; z-index: 15; padding: 0 10px; transform: translateY(-10px); }
+}
+
+@-webkit-keyframes snapToRow {
+	from 	{ -webkit-flex-direction: initial; -ms-flex-direction: initial; flex-direction: initial; }
+	to 		{ -webkit-flex-direction: row; -ms-flex-direction: row; flex-direction: row; }
+}
+
+@keyframes snapToRow { 
+	from 	{ -webkit-flex-direction: initial; -ms-flex-direction: initial; flex-direction: initial; }
+	to 		{ -webkit-flex-direction: row; -ms-flex-direction: row; flex-direction: row; }
+}
+
+@-webkit-keyframes delayedImageShrink {
+	from	{ width: 100%; max-width: 100%; height: 150px; margin-left: 0; -webkit-align-self: auto; }
+	to 		{ width: 50px; max-width: 50px; height: 50px; margin-left: 10px; -webkit-align-self: auto;  }
+}
+
+@keyframes delayedImageShrink {
+	from	{ width: 100%; max-width: 100%; height: 150px; margin-left: 0; -ms-align-self: auto; align-self: auto; }
+	to 		{ width: 50px; max-width: 50px; height: 50px; margin-left: 10px; -ms-align-self: auto; align-self: auto; }
+}
+
+/* SET TRANSITION TIMES
+ * ========================================================================= */
+
+.wcp-top-to-wcp-normal .wcp-article-title,
+.wcp-normal-to-wcp-top .wcp-article-title,
+.wcp-single-to-wcp-top .wcp-article-title,
+.wcp-single-to-wcp-normal .wcp-article-image,
+.wcp-single-to-wcp-normal {
+	-webkit-align-self: flex-start;
+	-ms-align-self: flex-start;
+	align-self: flex-start;
+
+	-webkit-transition: width 500ms linear, height 500ms linear, max-height 500ms linear, padding 0ms, background-color 0ms;	
+	transition: width 500ms linear, height 500ms linear, max-height 500ms linear, padding 0ms, background-color 0ms;
+
+	-webkit-animation-duration: 500ms;
+	animation-duration: 500ms;
+
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+}
+
+.wcp-single-to-wcp-top .wcp-article-title p,
+.wcp-normal-to-wcp-top .wcp-article-title p,
+.wcp-single-to-wcp-top .wcp-article-title p,
+.wcp-top-to-wcp-normal .wcp-article-image, 
+.wcp-normal-to-wcp-top .wcp-article-image {
+	-webkit-transition: all 500ms linear;
+	transition: all 500ms linear;
+}
+
+/* RUN ANIMATIONS
+ * ========================================================================= */
+
+.wcp-normal-to-wcp-top .wcp-article-title {
+	max-height: 63px; /* To stop height jump on Safari */
+	overflow: hidden;
+}
+
+.wcp-single-to-wcp-top .wcp-article-title {
+	-webkit-align-self: flex-start;
+	-ms-align-self: flex-start;
+	align-self: flex-start;
+
+	-webkit-animation-name: absoluteDown;
+	animation-name: absoluteDown;
+
+	-webkit-animation-delay: 250ms;	
+	animation-delay: 250ms;
+}
+
+.wcp-single-to-wcp-normal {
+	-webkit-animation-name: snapToRow;
+	animation-name: snapToRow;
+
+	-webkit-animation-delay: 250ms;	
+	animation-delay: 250ms;
+}
+
+.wcp-single-to-wcp-normal .wcp-article-image {
+	-webkit-align-self: flex-end;
+	-ms-align-self: flex-end;
+	align-self: flex-end;
+
+	-webkit-animation-name: delayedImageShrink;
+	animation-name: delayedImageShrink;
+
+	-webkit-animation-delay: 125ms;	
+	animation-delay: 125ms;	
+}
+
+/* TRANSITION OTHER ELEMENTS
+ * ========================================================================= */
+
+.wcp-top-to-wcp-normal,
+.wcp-normal-to-wcp-top {
+	padding-top: 0;
+	
+	-webkit-justify-content: flex-end;
+	-ms-justify-content: flex-end;
+	justify-content: flex-end;
+
+	-webkit-transition: padding-top 500ms linear;
+	transition: padding-top 500ms linear;
+}
+	
+.wcp-top-to-wcp-normal .wcp-article-image, 
+.wcp-normal-to-wcp-top .wcp-article-image {
+	-webkit-align-self: flex-end;
+	-ms-align-self: flex-end;
+	align-self: flex-end;
+}
+
+.wcp-normal-to-wcp-top .wcp-article-image {
+	width: 100%;
+	max-width: 100%;
+	height: 150px;
+}
+
+.wcp-iphone6 .wcp-normal-to-wcp-top .wcp-article-image {
+	height: 179px;
+}
+
+.wcp-top-to-wcp-normal .wcp-article-title p {
+	padding: 0;
+	background-color: transparent;
+	color: #000;
+	font-size: 16px;
+}
+
+.wcp-normal-to-wcp-top .wcp-article-title p {
+	padding: 5px;
+	font-size: 18px;
+	width: 100%;
+	background-color: rgba( 0, 0, 0, 0.8 );
+	color: #FFF;
+	-webkit-transition: all 500ms linear;
+	transition: all 500ms linear;
+}
+
+.wcp-single-to-wcp-top .wcp-article-title p {
+	background-color: rgba( 0, 0, 0, 0.8 );
+	color: #FFF;
+	-webkit-transition-delay: background-color 125ms linear, color 250ms linear;
+	-webkit-transition: all 250ms linear;
+}
+
+.wcp-gallery .wcp-single-to-wcp-top {
+	max-height: none;
+}
+
+.wcp-article.wcp-single-to-wcp-top .wcp-article-description,
+.wcp-article.wcp-single-to-wcp-normal .wcp-article-description {
+	margin: 0;
+	max-height: 0;
+
+	-webkit-transition: all 125ms linear;
+	transition: all 125ms linear;
+}
+
+@media screen and ( min-device-pixel-ratio: 2 ), screen and ( -webkit-min-device-pixel-ratio: 2 ) {
+
+	.wcp-content-wrapper {
+		box-shadow: 0px 0px 0px 0.5px rgba( 0,0,0,0.5 );
+	}
+
+}
+
+/* RESPONSIVE
+ * USE MEDIA QUERIES TO SNAP IPHONE DIMENSIONS BASED ON SCREEN WITH
+ * TODO: SET IMAGE HEIGHT SPECIFIC TO IPHONE 6 / SET MIN HEIGHTS ACCORDING TO THIS CHANGE
+ * ========================================================================= */
+
+@media screen and ( max-width: 414px ) {
+
+	.wcp {
+		max-width: 375px;
+		max-height: 667px;
+	}
+
+}
+
+@media screen and ( max-width: 375px ) {
+
+	.wcp {
+		max-width: 320px;
+		max-height: 568px;
+	}
+
+}

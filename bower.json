@@ -1,0 +1,12 @@
+{
+  "name": "wechat-preview",
+  "version": "1.0.0",
+  "main": "dist/wechat-preview.min.js",
+  "ignore": [
+    ".bowerrc",
+    ".gitignore",
+    ".gitattributes",
+    ".git/*",
+    "bower.json"
+  ]
+}
