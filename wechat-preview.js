@@ -261,7 +261,7 @@
 					content.articles[ i ] = extend({
 						title: '微博正文',
 						description: '摘要',
-						image: '../kawo/kawo_components/meta/stock-images/1.jpg',
+						image: null,
 						shadow: false
 					}, content.articles[ i ]);
 
