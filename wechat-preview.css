@@ -468,7 +468,7 @@
 	height: 50px;
 }
 
-.wcp-normal:last-of-type {
+.wcp-content-wrapper .wcp-normal:last-of-type {
 	padding-bottom: 0;
 }
 
@@ -575,7 +575,7 @@
 	min-height: 140px;
 }
 
-.wcp-normal:last-of-type .wcp-shadow-content {
+.wcp-content-wrapper .wcp-normal:last-of-type .wcp-shadow-content {
 	margin-bottom: 5px;
 }
 
