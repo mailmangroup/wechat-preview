@@ -555,12 +555,17 @@
 /* SHADOW POST
  * ========================================================================= */
 
+.wcp-article .wcp-shadow-content {
+	display: none;
+}
+
 .wcp-shadow {
 	margin: 0;
 	flex-direction: column;
 }
 
-.wcp-shadow-content {
+.wcp-shadow .wcp-shadow-content {
+	display: block;
 	border: 2px dashed #CCC;
 	width: 100%;
 	flex: 1 0 auto;
@@ -577,6 +582,14 @@
 
 .wcp-content-wrapper .wcp-normal:last-of-type .wcp-shadow-content {
 	margin-bottom: 5px;
+}
+
+.wcp-shadow .wcp-article-title,
+.wcp-shadow .wcp-article-image,
+.wcp-shadow .wcp-article-date,
+.wcp-shadow .wcp-article-description,
+.wcp-shadow .wcp-read-all {
+	display: none;
 }
 
 /* TRANSITIONS
