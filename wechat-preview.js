@@ -1,7 +1,7 @@
 /*
  * WeChat Preview
  * Author: Fergus Jordan
- * Version: 1.0.3
+ * Version: 1.0.4
  *
  * Preview of content in WeChat's iOS app
  */
@@ -246,11 +246,11 @@
 		
 		} else if ( !articleContent ) {
 
-			article.articleTitle.innerHTML = '';
-			article.articleDateEl.innerHTML = '';
-			article.articleImage.removeAttribute('src');
-			article.articleDescriptionEl.innerHTML = '';
-			article.readAll.innerHTML = '';
+			if ( article.articleTitle ) article.articleTitle.innerHTML = '';
+			if ( article.articleDateEl ) article.articleDateEl.innerHTML = '';
+			if ( article.articleImage ) article.articleImage.removeAttribute( 'src' );
+			if ( article.articleDescriptionEl ) article.articleDescriptionEl.innerHTML = '';
+			if ( article.readAll ) article.readAll.innerHTML = '';
 
 			// CREATE THREE EMPTY ARTICLE LINES
 			for ( var i = 0; i < 3; i++ ) createElement( 'div', 'wcp-text-line', article.articleDescriptionEl );
