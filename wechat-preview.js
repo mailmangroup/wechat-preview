@@ -1,7 +1,7 @@
 /*
  * WeChat Preview
  * Author: Fergus Jordan
- * Version: 1.0.2
+ * Version: 1.0.3
  *
  * Preview of content in WeChat's iOS app
  */
@@ -93,9 +93,11 @@
 	// ===============================================================================
 	function englishCharSpacing ( string ) {
 
-		return string = string.replace( /(\w+)([\w\s#!:,.?+=&%@!\-\/]+)?/g, function( match ) {
-			return '<span class="wcp-en">' + match + '</span>';
-		});
+		if ( string ) {
+			return string = string.replace( /(\w+)([\w\s#!:,.?+=&%@!\-\/]+)?/g, function( match ) {
+				return '<span class="wcp-en">' + match + '</span>';
+			});
+		}
 
 	}
 
@@ -190,53 +192,68 @@
 
 	// DECLARE ARTICLE CREATOR FUNCTION
 	// =========================================================================
-	wechatPreview.prototype.article = function ( articleContent, articleContainer ) {
+	wechatPreview.prototype.article = function ( articleContent, iterator, articleContainer ) {
 
-		var article = createElement( 'div', 'wcp-article', articleContainer );
+		// IF THERE ARE NO PREVIOUS VALUES > CREATE ARTICLES
+		if ( !this.previous ) this.articles[ iterator ] = createElement( 'div', 'wcp-article', articleContainer );
+	
+		// IF THERE IS NO PREVIOUS VALUE FOR THE SPECIFIC ARTICLE > CREATE THE SPECIFIC ARTICLE	
+		else if ( this.previous && !this.previous.articles[ iterator ] ) this.articles[ iterator ] = createElement( 'div', 'wcp-article', articleContainer );
 
-		// IF THE ARTICLE ISNT A SHADOW > CREATE ARTICLE CONTENT
-		if ( !articleContent.shadow ) {
+		// ATTACH TO ANONYMOUS VARIABLE
+		var article = this.articles[ iterator ];
 
-			// CREATE ARTICLE TITLE EL
-			var articleTitleEl = createElement( 'div', 'wcp-article-title', article ),
-				articleTitle = createElement( 'p', false, articleTitleEl ),
-				articleDateEl = createElement( 'span', 'wcp-article-date', article ),
-				articleImageEl = createElement( 'div', 'wcp-article-image', article ),
-				articleDescriptionEl = createElement( 'div', 'wcp-article-description', article ),
-				readAllEl = createElement( 'div', 'wcp-read-all', article ),
-				readAll = createElement( 'span', false, readAllEl );
-			
-			// SET INNER HTML IF POST TYPE ISNT EMPTY
-			if ( articleContent ) {
-				
-				// SET ARTICLE TITLE
-				articleTitle.innerHTML = englishCharSpacing( articleContent.title );
+		// NORMAL ELEMENTS
+		// =====================================================================
 
-				// SET ARTICLE DATE
-				articleDateEl.innerHTML = this.articleDate;
+		if ( article && !article.articleTitleEl ) article.articleTitleEl = createElement( 'div', 'wcp-article-title', article );
+		if ( article && !article.articleTitle ) article.articleTitle = createElement( 'p', false, article.articleTitleEl );
+		if ( article && !article.articleDateEl ) article.articleDateEl = createElement( 'span', 'wcp-article-date', article );
+		if ( article && !article.articleImageEl ) article.articleImageEl = createElement( 'div', 'wcp-article-image', article );
+		if ( article && !article.articleDescriptionEl ) article.articleDescriptionEl = createElement( 'div', 'wcp-article-description', article );
+		if ( article && !article.readAllEl ) article.readAllEl = createElement( 'div', 'wcp-read-all', article );
+		if ( article && !article.readAll ) article.readAll = createElement( 'span', false, article.readAllEl );
 
-				// SET ARTICLE IMAGE
-				var articleImage = createElement( 'img', false, articleImageEl );
-				if ( articleContent.image )	articleImage.setAttribute( 'src', articleContent.image );
-
-				// SET ARTICLE DESCRIPTION
-				articleDescriptionEl.innerHTML = articleContent.description;
-				
-				// SET ARTICLE READ ALL
-				readAll.innerHTML = '阅读原文';
-			
-			} else if ( !articleContent ) {
-
-				// CREATE THREE EMPTY ARTICLE LINES
-				for ( var i = 0; i < 3; i++ ) createElement( 'div', 'wcp-text-line', articleDescriptionEl );
-
-			}
-
-		} else {
-
+		// SHADOW ELEMENT
+		// =====================================================================
+		if ( articleContent.shadow ) {
+			// IF NO ARTICLE EXISTS > CREATE THE ARTICLE
+			if ( !this.shadowContent ) this.shadowContent = createElement( 'div', 'wcp-shadow-content', article );
+			if ( this.shadowContent && this.shadowContent.parentNode != article ) article.appendChild( this.shadowContent );
 			addClass( article, 'wcp-shadow' );
+		} else if ( article && !articleContent.shadow ) {
+			removeClass( article, 'wcp-shadow' );
+		}
 
-			this.shadowContent = createElement( 'div', 'wcp-shadow-content', article );
+		// SET INNER HTML IF POST TYPE ISNT EMPTY
+		if ( articleContent && article ) {
+			
+			// SET ARTICLE TITLE
+			article.articleTitle.innerHTML = englishCharSpacing( articleContent.title );
+
+			// SET ARTICLE DATE
+			article.articleDateEl.innerHTML = this.articleDate;
+
+			// SET ARTICLE IMAGE
+			if ( !article.articleImage ) article.articleImage = createElement( 'img', false, article.articleImageEl );
+			if ( articleContent.image )	article.articleImage.setAttribute( 'src', articleContent.image );
+
+			// SET ARTICLE DESCRIPTION
+			article.articleDescriptionEl.innerHTML = articleContent.description;
+			
+			// SET ARTICLE READ ALL
+			article.readAll.innerHTML = '阅读原文';
+		
+		} else if ( !articleContent ) {
+
+			article.articleTitle.innerHTML = '';
+			article.articleDateEl.innerHTML = '';
+			article.articleImage.removeAttribute('src');
+			article.articleDescriptionEl.innerHTML = '';
+			article.readAll.innerHTML = '';
+
+			// CREATE THREE EMPTY ARTICLE LINES
+			for ( var i = 0; i < 3; i++ ) createElement( 'div', 'wcp-text-line', article.articleDescriptionEl );
 
 		}
 
@@ -275,15 +292,29 @@
 
 				} else if ( this.previous ) {
 
-					content.articles[ i ] = extend( this.previous.articles[ i ], content.articles[ i ] );
+					if ( this.previous.articles[ i ] ) {
+
+						content.articles[ i ] = extend( {
+							
+							title: this.previous.articles[ i ].title, 
+							description: this.previous.articles[ i ].description,
+							image: this.previous.articles[ i ].image,
+							shadow: false
+						
+						}, content.articles[ i ] );
+
+					}
 
 					content = extend( this.previous, content );
 
 				}
-			
+
 			}
 
-		}
+		}		
+
+		// CREATE EMPTY ARTICLES ARRAY
+		if ( !this.articles ) this.articles = [];
 
 		// FORMAT THE DATE
 		// =========================================================================
@@ -339,8 +370,9 @@
 		if ( content.articles.length == 0 ) {
 
 			addClass( this.postWrapper, 'wcp-empty' );
-			this.emptyArticle = this.article( false, this.contentWrapper );
+			this.emptyArticle = this.article( false, 0, this.contentWrapper );
 			addClass( this.emptyArticle, 'wcp-single' );
+			this.timestamp.innerHTML = '';
 
 		}
 
@@ -351,31 +383,48 @@
 			// IF THE POST WRAPPER HAS PREVIOUSLY SET CLASSES > REMOVE THEM
 			removeClass( this.postWrapper, 'wcp-empty' );
 
-			if ( content.articles.length > 1 )
-				removeClass( this.contentWrapper, 'wcp-gallery' );
+			if ( this.emptyArticle ) this.contentWrapper.removeChild( this.emptyArticle );
+
+			if ( content.articles.length > 1 ) removeClass( this.contentWrapper, 'wcp-gallery' );
+
+			// REMOVE ANY PREVIOUS ARTICLES WHOS VALUE WONT GET OVERWRITTEN
+			if ( this.previous ) {
+				
+				for ( var a = 0; a < this.previous.articles.length; a++ ) {
+				
+					if ( a >= content.articles.length ) this.contentWrapper.removeChild( this.articles[ a ] );
+				
+				}
+
+			}
 
 			// LOOP THROUGH ARTICLES TO CREATE
 			for ( var i = 0; i < content.articles.length && i < 9; i++ ) {
 
-				// CREATE THE ARTICLES
-				var article = this.article( content.articles[ i ], this.contentWrapper );
+				this.articles[ i ] = this.article( content.articles[ i ], i, this.contentWrapper );
+
+				if ( this.articles[ i ] && this.articles[ i ].parentNode != this.contentWrapper ) this.contentWrapper.appendChild( this.articles[ i ] );
 
 				// IF IT IS THE FIRST ARTICLE OF MULTIPLE ARTICLES > ADD THE TOP CLASSNAME
-				if ( i == 0 && content.articles.length > 1 ) 
-					addClass( article, 'wcp-top' );
+				if ( i == 0 && content.articles.length > 1 ) {
+					removeClass( this.articles[ 0 ], 'wcp-single' );
+					addClass( this.articles[ 0 ], 'wcp-top' );
+				}
 
 				// IF IT IS THE ONLY ARTICLE > ADD THE SINGLE CLASSNAME
-				else if ( i == 0 && content.articles.length == 1 && !hasClass( this.contentWrapper, 'wcp-gallery' ) ) 
-					addClass( article, 'wcp-single' );
+				else if ( content.articles.length == 1 && !hasClass( this.contentWrapper, 'wcp-gallery' ) ) {
+					removeClass( this.articles[ 0 ], 'wcp-top' );
+					addClass( this.articles[ 0 ], 'wcp-single' );
+				}
 
 				// IF NOT THE FIRST ARTICLE > ADD THE NORMAL CLASSNAME
-				else addClass( article, 'wcp-normal' );
-
+				else addClass( this.articles[ i ], 'wcp-normal' );
+				
 			}
 
-		}
+			this.previous = content;
 
-		this.previous = content;
+		}
 
 	}
 
