@@ -1,7 +1,7 @@
 /*
  * WeChat Preview
  * Author: Fergus Jordan
- * Version: 1.0.4
+ * Version: 1.0.5
  *
  * Preview of content in WeChat's iOS app
  */
@@ -367,29 +367,31 @@
 
 		// IF THERE ARE NO ARTICLES > CREATE THE EMPTY POST
 		// =========================================================================
-		if ( content.articles.length == 0 ) {
+		if ( !content.articles || content.articles.length == 0 ) {
 
 			addClass( this.postWrapper, 'wcp-empty' );
-			this.emptyArticle = this.article( false, 0, this.contentWrapper );
-			addClass( this.emptyArticle, 'wcp-single' );
+
+			if ( this.articles[ 0 ] ) this.contentWrapper.removeChild( this.articles[ 0 ] );
+			this.articles[ 0 ] = this.article( false, 0, false );
+			if ( this.articles[ 0 ].parentNode != this.contentWrapper ) this.contentWrapper.appendChild( this.articles[ 0 ] );
+
+			addClass( this.articles[ 0 ], 'wcp-single' );
 			this.timestamp.innerHTML = '';
 
 		}
 
 		// IF THERE IS THE CORRECT AMOUNT OF ARTICLES > CREATE THE ARTICLES
 		// =========================================================================
-		if ( content.articles.length > 0 ) {
+		if ( content.articles && content.articles.length > 0 ) {
 
 			// IF THE POST WRAPPER HAS PREVIOUSLY SET CLASSES > REMOVE THEM
+			if ( this.articles[ 0 ] && hasClass( this.postWrapper, 'wcp-empty' ) ) this.contentWrapper.removeChild( this.articles[ 0 ] );
 			removeClass( this.postWrapper, 'wcp-empty' );
 
-			if ( this.emptyArticle ) this.contentWrapper.removeChild( this.emptyArticle );
-
-			if ( content.articles.length > 1 ) removeClass( this.contentWrapper, 'wcp-gallery' );
-
 			// REMOVE ANY PREVIOUS ARTICLES WHOS VALUE WONT GET OVERWRITTEN
+			// =========================================================================			
 			if ( this.previous ) {
-				
+					
 				for ( var a = 0; a < this.previous.articles.length; a++ ) {
 				
 					if ( a >= content.articles.length ) this.contentWrapper.removeChild( this.articles[ a ] );
@@ -397,6 +399,8 @@
 				}
 
 			}
+
+			if ( content.articles.length > 1 ) removeClass( this.contentWrapper, 'wcp-gallery' );			
 
 			// LOOP THROUGH ARTICLES TO CREATE
 			for ( var i = 0; i < content.articles.length && i < 9; i++ ) {
