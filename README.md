@@ -1,5 +1,5 @@
 # wechat-preview
-[![wechat-preview version](https://img.shields.io/badge/wechat--preview-v1.0.5-brightgreen.svg)](https://github.com/mailmangroup/wechat-preview/) [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+[![wechat-preview version](https://img.shields.io/badge/wechat--preview-v1.0.6-brightgreen.svg)](https://github.com/mailmangroup/wechat-preview/) [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 ## Introduction
 To support WeChat, we had to build a live preview of how the post would look that could be used within our app. This would allow us to simulate and build upon the already existing user experience that WeChat has internally.
@@ -61,7 +61,7 @@ content: { ... }
 
 ## wechatPreview.build Options
 
-### build.container 
+### build.container
 
 Type: `string` or `object`
 

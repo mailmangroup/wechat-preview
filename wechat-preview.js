@@ -1,7 +1,7 @@
 /*
  * WeChat Preview
  * Author: Fergus Jordan
- * Version: 1.0.5
+ * Version: 1.0.6
  *
  * Preview of content in WeChat's iOS app
  */
@@ -21,34 +21,34 @@
 
 	// DECLARE ACCEPTED CONTAINER SIZES
 	var sizes = {
-		iphone4: { 
-			height: '480px', 
-			width: '320px' 
+		iphone4: {
+			height: '480px',
+			width: '320px'
 		},
-		iphone5: { 
-			height: '568px', 
-			width: '320px' 
+		iphone5: {
+			height: '568px',
+			width: '320px'
 		},
-		iphone6: { 
-			height: '667px', 
-			width: '375px' 
+		iphone6: {
+			height: '667px',
+			width: '375px'
 		},
-		iphone6plus: { 
-			height: '736px', 
-			width: '414px' 
+		iphone6plus: {
+			height: '736px',
+			width: '414px'
 		}
 	};
 
 	// EXTEND JAVASCRIPT OBJECT
 	function extend ( defaults, options ) {
-	    
-	    var extended = {};	    
+
+	    var extended = {};
 	    var prop;
-	   
-	    for (prop in defaults) {        
-	        if (Object.prototype.hasOwnProperty.call(defaults, prop)) extended[prop] = defaults[prop]; 
+
+	    for (prop in defaults) {
+	        if (Object.prototype.hasOwnProperty.call(defaults, prop)) extended[prop] = defaults[prop];
 	    }
-	    
+
 	    for (prop in options) {
 	    	if (Object.prototype.hasOwnProperty.call(options, prop) ) extended[prop] = options[prop];
 	    }
@@ -78,8 +78,8 @@
 	function addClass( el, className ) {
 
 		if (el.classList) el.classList.add(className);
-		else el.className += ' ' + className;	
-		
+		else el.className += ' ' + className;
+
 	}
 	// REMOVECLASS
 	function removeClass( el, className ) {
@@ -118,7 +118,7 @@
 	// PREVIEW CLASS CONSTRUCTOR
 	// ===============================================================================
 	function wechatPreview ( options ) {
-		
+
 		// ENSURE THAT THE CLASS IS CALLED WITH THE `new` CONSTRUCTOR
 		if ( !( this instanceof wechatPreview ) ) {
 			throw new TypeError( 'wechatPreview constructor cannot be called as a function.' );
@@ -151,7 +151,7 @@
 		// CREATE CONTENT WRAPPER AND APPEND TO POST WRAPPER
 		this.contentWrapper = createElement( 'div', 'wcp-content-wrapper', this.postWrapper );
 
-		if ( !options.container ) 
+		if ( !options.container )
 			addClass( this.contentWrapper, 'wcp-gallery' );
 
 
@@ -165,10 +165,10 @@
 				options.container.minHeight = options.container.height + 'px';
 
 			}
-				
+
 			this.el.style.width = options.container.width;
 			this.el.style.minHeight = options.container.height;
-				
+
 		}
 
 		// IF CONTAINER IS AN STRING > SET HEIGHT AND WIDTH ACCORDING TO WHITELIST SIZES
@@ -176,14 +176,14 @@
 		else if ( typeof options.container == 'string' ) {
 
 			for ( var prop in sizes ) {
-									
+
 				if ( sizes.hasOwnProperty( prop ) && prop == normalizeString( options.container ) ) {
 
 					this.el.style.width = sizes[ prop ].width;
 					this.el.style.minHeight = sizes[ prop ].height;
 
 				}
-							
+
 			}
 
 		} else if ( typeof options.container != 'boolean' ) throw new TypeError( 'Container object contains invalid values' );
@@ -196,8 +196,8 @@
 
 		// IF THERE ARE NO PREVIOUS VALUES > CREATE ARTICLES
 		if ( !this.previous ) this.articles[ iterator ] = createElement( 'div', 'wcp-article', articleContainer );
-	
-		// IF THERE IS NO PREVIOUS VALUE FOR THE SPECIFIC ARTICLE > CREATE THE SPECIFIC ARTICLE	
+
+		// IF THERE IS NO PREVIOUS VALUE FOR THE SPECIFIC ARTICLE > CREATE THE SPECIFIC ARTICLE
 		else if ( this.previous && !this.previous.articles[ iterator ] ) this.articles[ iterator ] = createElement( 'div', 'wcp-article', articleContainer );
 
 		// ATTACH TO ANONYMOUS VARIABLE
@@ -227,7 +227,7 @@
 
 		// SET INNER HTML IF POST TYPE ISNT EMPTY
 		if ( articleContent && article ) {
-			
+
 			// SET ARTICLE TITLE
 			article.articleTitle.innerHTML = englishCharSpacing( articleContent.title );
 
@@ -240,10 +240,10 @@
 
 			// SET ARTICLE DESCRIPTION
 			article.articleDescriptionEl.innerHTML = articleContent.description;
-			
+
 			// SET ARTICLE READ ALL
 			article.readAll.innerHTML = '阅读原文';
-		
+
 		} else if ( !articleContent ) {
 
 			if ( article.articleTitle ) article.articleTitle.innerHTML = '';
@@ -278,9 +278,9 @@
 		content = extend( defaults, content );
 
 		if ( content.articles ) {
-				
+
 			for ( var i = 0; i < content.articles.length; i++ ) {
-							
+
 				if ( !this.previous ) {
 
 					content.articles[ i ] = extend({
@@ -295,12 +295,12 @@
 					if ( this.previous.articles[ i ] ) {
 
 						content.articles[ i ] = extend( {
-							
-							title: this.previous.articles[ i ].title, 
+
+							title: this.previous.articles[ i ].title,
 							description: this.previous.articles[ i ].description,
 							image: this.previous.articles[ i ].image,
 							shadow: false
-						
+
 						}, content.articles[ i ] );
 
 					}
@@ -311,7 +311,7 @@
 
 			}
 
-		}		
+		}
 
 		// CREATE EMPTY ARTICLES ARRAY
 		if ( !this.articles ) this.articles = [];
@@ -345,18 +345,18 @@
 			// ----------------------------------------------------------------------
 			// THE DATE IS TODAY
 			if ( nowDate == setDate && month == nowMonth )
-				this.postDate = clock; 
-			
+				this.postDate = clock;
+
 			// THE DATE IS YESTERDAY
 			else if ( day == nowDay - 1 && dayDifference < 7 )
 				this.postDate = '昨天 ' + clock;
 
 			// WITHIN LAST 7 DAYS
-			else if ( dayDifference < 7 && dayDifference > 0 ) 
+			else if ( dayDifference < 7 && dayDifference > 0 )
 				this.postDate = weekDay + ' ' + clock;
-			
-			// OUTSIDE OF LAST 7 DAYS	
-			else this.postDate = year + '年' + monthAbbr + dayAbbr + ' ' + clock; 
+
+			// OUTSIDE OF LAST 7 DAYS
+			else this.postDate = year + '年' + monthAbbr + dayAbbr + ' ' + clock;
 
 			// SET CONTENT
 			// ----------------------------------------------------------------------
@@ -389,18 +389,18 @@
 			removeClass( this.postWrapper, 'wcp-empty' );
 
 			// REMOVE ANY PREVIOUS ARTICLES WHOS VALUE WONT GET OVERWRITTEN
-			// =========================================================================			
+			// =========================================================================
 			if ( this.previous ) {
-					
+
 				for ( var a = 0; a < this.previous.articles.length; a++ ) {
-				
+
 					if ( a >= content.articles.length ) this.contentWrapper.removeChild( this.articles[ a ] );
-				
+
 				}
 
 			}
 
-			if ( content.articles.length > 1 ) removeClass( this.contentWrapper, 'wcp-gallery' );			
+			if ( content.articles.length > 1 ) removeClass( this.contentWrapper, 'wcp-gallery' );
 
 			// LOOP THROUGH ARTICLES TO CREATE
 			for ( var i = 0; i < content.articles.length && i < 9; i++ ) {
@@ -416,14 +416,14 @@
 				}
 
 				// IF IT IS THE ONLY ARTICLE > ADD THE SINGLE CLASSNAME
-				else if ( content.articles.length == 1 && !hasClass( this.contentWrapper, 'wcp-gallery' ) ) {
+				else if ( content.articles.length == 1 || hasClass( this.contentWrapper, 'wcp-gallery' ) ) {
 					removeClass( this.articles[ 0 ], 'wcp-top' );
 					addClass( this.articles[ 0 ], 'wcp-single' );
 				}
 
 				// IF NOT THE FIRST ARTICLE > ADD THE NORMAL CLASSNAME
 				else addClass( this.articles[ i ], 'wcp-normal' );
-				
+
 			}
 
 			this.previous = content;
