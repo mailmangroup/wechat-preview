@@ -172,7 +172,7 @@
 	border-radius: 6px;
 	padding: 12px 0;
 	text-align: left;
-	box-shadow: 0px 0px 0px 0.5px rgba( 0,0,0,0.2 );
+	box-shadow: inset 0px 0px 1px rgba( 0,0,0,0.5 );
 }
 
 .wcp-content-wrapper .wcp-normal,
@@ -775,7 +775,7 @@
 @media screen and ( min-device-pixel-ratio: 2 ), screen and ( -webkit-min-device-pixel-ratio: 2 ) {
 
 	.wcp-content-wrapper {
-		box-shadow: 0px 0px 0px 0.5px rgba( 0,0,0,0.5 );
+		box-shadow: inset 0px 0px 1px rgba( 0,0,0,0.5 );
 	}
 
 }
