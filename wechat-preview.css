@@ -370,6 +370,11 @@
 	max-height: 500px;
 	width: auto;
 	display: block;
+	-webkit-flex: 0 1 auto;
+	-ms-flex: 0 1 auto;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: auto;
 }
 
 
@@ -477,7 +482,6 @@
 
 .wcp-gallery {
 	min-width: 286px;
-	max-height: 303px;
 }
 
 .wcp-gallery .wcp-article {
@@ -489,7 +493,6 @@
 }
 
 .wcp-gallery .wcp-article .wcp-article-description {
-	max-height: 36px;
 	width: 100%;
 	max-width: 100%;
 	display: block;
