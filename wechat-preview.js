@@ -1,7 +1,7 @@
 /*
  * WeChat Preview
  * Author: Fergus Jordan
- * Version: 1.0.11
+ * Version: 1.0.12
  *
  * Preview of content in WeChat's iOS app
  */
@@ -167,7 +167,7 @@
 			}
 
 			this.el.style.width = options.container.width;
-			this.el.style.minHeight = options.container.height;
+			this.el.style.height = options.container.height;
 
 		}
 
@@ -180,7 +180,7 @@
 				if ( sizes.hasOwnProperty( prop ) && prop == normalizeString( options.container ) ) {
 
 					this.el.style.width = sizes[ prop ].width;
-					this.el.style.minHeight = sizes[ prop ].height;
+					this.el.style.height = sizes[ prop ].height;
 
 				}
 
