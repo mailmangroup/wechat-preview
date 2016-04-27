@@ -1,7 +1,7 @@
 /*
  * WeChat Preview
  * Author: Fergus Jordan
- * Version: 1.0.12
+ * Version: 1.0.13
  *
  * Preview of content in WeChat's iOS app
  */
@@ -376,7 +376,7 @@
 			if ( this.articles[ 0 ].parentNode != this.contentWrapper ) this.contentWrapper.appendChild( this.articles[ 0 ] );
 
 			addClass( this.articles[ 0 ], 'wcp-single' );
-			this.timestamp.innerHTML = '';
+			if ( this.timestamp ) this.timestamp.innerHTML = '';
 
 		}
 
