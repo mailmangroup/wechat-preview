@@ -235,8 +235,13 @@
 			article.articleDateEl.innerHTML = this.articleDate;
 
 			// SET ARTICLE IMAGE
-			if ( !article.articleImage ) article.articleImage = createElement( 'img', false, article.articleImageEl );
+			if ( !article.articleImage && articleContent.image ) article.articleImage = createElement( 'img', false, article.articleImageEl );
+
+			// IF IMAGE PASSED › SET SRC OF IMAGE
 			if ( articleContent.image )	article.articleImage.setAttribute( 'src', articleContent.image );
+
+			// ELSE › ADD CLASSNAME FOR NULL IMAGE STYLING
+			else article.articleImageEl.classList.add( 'wcp-null-image' );
 
 			// SET ARTICLE DESCRIPTION
 			article.articleDescriptionEl.innerHTML = articleContent.description;

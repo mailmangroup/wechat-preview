@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<title>WeChat Preview | KAWO Technologies</title>
+	<link rel="stylesheet" href="./wechat-preview.css">
+
+</head>
+
+<body>
+
+<div id="preview"></div>
+
+</body>
+<script type="text/javascript" src="./dist/wechat-preview.min.js"></script>
+<script type="text/javascript">
+
+	var preview = new wechatPreview({
+		container: 'iphone6'
+	});
+
+	document.getElementById( 'preview' ).appendChild( preview.el );
+
+	preview.generate({
+		postTime: 1444905243050,
+		articles: [
+			{
+				title: 'Title',
+				description: 'Description',
+				image: null
+			},
+
+			{
+				title: 'Title',
+				description: 'Description',
+				image: null
+			},
+
+			{
+				title: 'Title',
+				description: 'Description',
+				image: null
+			},
+
+			{
+				title: 'Title',
+				description: 'Description',
+				image: null
+			},
+		]
+	});
+
+</script>
+</html>
