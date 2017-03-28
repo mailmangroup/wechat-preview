@@ -1,7 +1,7 @@
 /*
  * WeChat Preview
  * Author: Fergus Jordan
- * Version: 1.0.14
+ * Version: 1.0.15
  *
  * Preview of content in WeChat's iOS app
  */
@@ -238,7 +238,20 @@
 			if ( !article.articleImage && articleContent.image ) article.articleImage = createElement( 'img', false, article.articleImageEl );
 
 			// IF IMAGE PASSED › SET SRC OF IMAGE
-			if ( articleContent.image )	article.articleImage.setAttribute( 'src', articleContent.image );
+			if ( articleContent.image )	{
+
+				article.articleImage.setAttribute( 'src', articleContent.image );
+
+				// IF LESS THAN 1.8 ASPECT RATIO › LIMIT TO 100%
+				article.articleImage.onload = function() {
+
+					if ( article.articleImage.width / article.articleImage.height < 1.8 )
+						article.articleImage.style.width = '100%';
+
+					else if ( article.articleImage.width > article.articleImage.height )
+						article.articleImage.style.height = '100%';
+				}
+			}
 
 			// ELSE › ADD CLASSNAME FOR NULL IMAGE STYLING
 			else article.articleImageEl.classList.add( 'wcp-null-image' );
