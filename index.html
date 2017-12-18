@@ -9,16 +9,16 @@
 
 </head>
 
-<body>
+<body style="margin:0px;overflow:hidden;">
 
 <div id="preview"></div>
 
 </body>
-<script type="text/javascript" src="./dist/wechat-preview.min.js"></script>
+<script type="text/javascript" src="./wechat-preview.js"></script>
 <script type="text/javascript">
 
 	var preview = new wechatPreview({
-		container: 'iphone6'
+		container: 'iphone5'
 	});
 
 	document.getElementById( 'preview' ).appendChild( preview.el );
@@ -26,29 +26,49 @@
 	preview.generate({
 		postTime: 1444905243050,
 		articles: [
-			{
-				title: 'Title',
-				description: 'Description',
-				image: null
-			},
+//			{
+//				title: '南海岸奇妙夜，红军四球大胜，成功复仇！',
+//				description: '四个进球，一场零封，三分到手！',
+//				image: 'https://assets.kawo.com/assets/f39ecc57-c004-4a8c-99a5-388b2e7df46b/6d04e7db-4443-4dbe-bae8-e5c4df5187bb_l.jpg'
+//			},
+//
 
 			{
-				title: 'Title',
-				description: 'Description',
-				image: null
+				title: '12 Accounts Social Marketing Folks MUST Follow!',
+				description: 'At KAWO we are often asked what are the best resources',
+				image: "http://mmbiz.qpic.cn/mmbiz_jpg/phLLI50skb8rAnLFhj0geb5bJzMibiaCy9zPOZMqicG55z6xb25aia0V9HH6w19G8vLje7Mu3CUqgIZ3icCoBCu80jQ/0?wx_fmt=jpeg"
 			},
-
 			{
-				title: 'Title',
-				description: 'Description',
-				image: null
-			},
+				title: 'KAWO featured on the Tech in Shanghai Podcast',
+				description: 'Want to learn more about how a startup company has bee',
+				image: 'https://assets.kawo.com/assets/e0cf3f82-dfb7-418b-bdfa-5da4c742f13a/e364f512-b6ea-410f-942a-affcfbace466_o.png'
+			}
 
-			{
-				title: 'Title',
-				description: 'Description',
-				image: null
-			},
+
+
+//
+//			{
+//				title: "The Crazy World of Weibo Verification",
+//				image: 'https://assets.kawo.com/assets/e0cf3f82-dfb7-418b-bdfa-5da4c742f13a/4e09c416-3e50-42a1-81cc-c636857c8848_o.png'
+//			},
+//			{
+//				title: "New Feature: Brand Setup",
+//				image: '//kawo-dev.s3.amazonaws.com/b7c81c19-6121-4ae1-8f6e-d9625b523538.png'
+//			},
+//			{
+//				title: "新功能发布：品牌创建手册",
+//				image: '//kawo-dev.s3.amazonaws.com/324abdfa-1232-4ff1-bb73-cb8589c48f6f.png'
+//			}
+
+
+//			{
+//				title: "年底了，你的KPI完成了吗？",
+//				image: '//images.kawo.com/720351ca-5403-41bc-a81b-58a110bd9710_o.jpg'
+//			},
+//			{
+//				title: "该拿年终奖了！",
+//				image: '//images.kawo.com/7270cef0-8dbe-4b5b-ace0-eee424b1b720_o.jpg'
+//			}
 		]
 	});
 
