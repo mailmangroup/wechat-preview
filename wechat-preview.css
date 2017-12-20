@@ -168,7 +168,7 @@
 	max-width: 100%;
 	min-height: 100px;
 	background: white;
-	margin: 18px 9px 0;
+	margin: 18px 13px 0;
 	position: relative;
 	border-radius: 6px;
 	text-align: left;
@@ -176,8 +176,8 @@
 }
 
 .wcp-iphone5 .wcp-content-wrapper {
-	margin-left: 13px;
-	margin-right: 13px;
+	margin-left: 9px;
+	margin-right: 9px;
 }
 
 .wcp-content-wrapper .wcp-normal,
@@ -360,7 +360,7 @@
 	bottom: 0;
 	-webkit-transform: translateY( 0 );
 	transform: translateY( 0 );
-	letter-spacing: 2px;
+	letter-spacing: 1px;
 	padding-bottom: 0 !important;
 }
 
@@ -424,7 +424,7 @@
 	padding: 0 20px;
 	position: absolute;
 	z-index: 5;
-	bottom: 5px;
+	bottom: 6px;
 	padding-bottom: 0 !important;
 }
 
@@ -461,6 +461,8 @@
 
 .wcp-normal .wcp-article-title p {
 	line-height: 24px;
+	max-height: 48px;
+	overflow: hidden;
 }
 
 .wcp-normal,
