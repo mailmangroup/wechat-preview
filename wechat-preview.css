@@ -457,12 +457,12 @@
 
 .wcp-normal .wcp-article-title {
 	padding-right: 10px;
+	max-height: 46px;
+	overflow: hidden;
 }
 
 .wcp-normal .wcp-article-title p {
 	line-height: 24px;
-	max-height: 48px;
-	overflow: hidden;
 }
 
 .wcp-normal,
