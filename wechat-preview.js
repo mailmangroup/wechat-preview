@@ -94,7 +94,7 @@
 	function englishCharSpacing ( string ) {
 
 		if ( string ) {
-			return string = string.replace( /(\w+)([\w\s#!:,.?+=&%@!\-\/]+)?/g, function( match ) {
+			return string = string.replace( /(\w+)([\w\s#!:,.'?+=&%@!\-\/]+)?/g, function( match ) {
 				return '<span class="wcp-en">' + match + '</span>';
 			});
 		}
@@ -173,12 +173,13 @@
 
 		// IF CONTAINER IS AN STRING > SET HEIGHT AND WIDTH ACCORDING TO WHITELIST SIZES
 		// ===========================================================================
-		else if ( typeof options.container == 'string' ) {
+		if ( typeof options.container == 'string' ) {
 
 			for ( var prop in sizes ) {
 
-				if ( sizes.hasOwnProperty( prop ) && prop == normalizeString( options.container ) ) {
+				if ( sizes.hasOwnProperty( prop ) && prop === normalizeString( options.container ) ) {
 
+					this.el.classList.add( 'wcp-' + normalizeString( options.container ) );
 					this.el.style.width = sizes[ prop ].width;
 					this.el.style.height = sizes[ prop ].height;
 
@@ -206,13 +207,19 @@
 		// NORMAL ELEMENTS
 		// =====================================================================
 
-		if ( article && !article.articleTitleEl ) article.articleTitleEl = createElement( 'div', 'wcp-article-title', article );
-		if ( article && !article.articleTitle ) article.articleTitle = createElement( 'p', false, article.articleTitleEl );
-		if ( article && !article.articleDateEl ) article.articleDateEl = createElement( 'span', 'wcp-article-date', article );
+		// IF NOT A SINGLE ARTICLE › THE TEXT NEEDS TO GO BEFORE THE IMAGE
+		if ( this.articles.length !== 1 )
+			if ( article && !article.articleTitleEl ) article.articleTitleEl = createElement( 'div', 'wcp-article-title', article );
+
 		if ( article && !article.articleImageEl ) article.articleImageEl = createElement( 'div', 'wcp-article-image', article );
+
+		// IF A SINGLE ARTICLE › APPEND TEXT AFTER IMAGE
+		if ( this.articles.length === 1 )
+			if ( article && !article.articleTitleEl ) article.articleTitleEl = createElement( 'div', 'wcp-article-title', article );
+
+		if ( article && !article.articleTitle ) article.articleTitle = createElement( 'p', false, article.articleTitleEl );
+
 		if ( article && !article.articleDescriptionEl ) article.articleDescriptionEl = createElement( 'div', 'wcp-article-description', article );
-		if ( article && !article.readAllEl ) article.readAllEl = createElement( 'div', 'wcp-read-all', article );
-		if ( article && !article.readAll ) article.readAll = createElement( 'span', false, article.readAllEl );
 
 		// SHADOW ELEMENT
 		// =====================================================================
@@ -231,9 +238,6 @@
 			// SET ARTICLE TITLE
 			article.articleTitle.innerHTML = englishCharSpacing( articleContent.title );
 
-			// SET ARTICLE DATE
-			article.articleDateEl.innerHTML = this.articleDate;
-
 			// SET ARTICLE IMAGE
 			if ( !article.articleImage && articleContent.image ) article.articleImage = createElement( 'img', false, article.articleImageEl );
 
@@ -242,14 +246,16 @@
 
 				article.articleImage.setAttribute( 'src', articleContent.image );
 
-				// IF LESS THAN 1.8 ASPECT RATIO › LIMIT TO 100%
+				// IF HEIGHT IS LESS THAN PARENT HEIGHT › LIMIT TO 100%
 				article.articleImage.onload = function() {
 
-					if ( article.articleImage.width / article.articleImage.height < 1.8 )
-						article.articleImage.style.width = '100%';
+					// IF THE HEIGHT THE IMAGE IS DISPLAY AT WOULD NOT FILL THE HEIGHT WITH NO SIDEBARS › SET 100% HEIGHT
+					if ( Math.min( article.articleImageEl.offsetHeight, article.articleImage.height ) < article.articleImageEl.offsetHeight &&
+						Math.min( article.articleImageEl.offsetWidth, article.articleImage.width ) > article.articleImageEl.offsetWidth )
+							article.articleImage.style.height = '100%';
 
-					else if ( article.articleImage.width > article.articleImage.height )
-						article.articleImage.style.height = '100%';
+					// ELSE › SET 100% HEIGHT
+					else article.articleImage.style.width = '100%';
 				}
 			}
 
@@ -259,16 +265,11 @@
 			// SET ARTICLE DESCRIPTION
 			article.articleDescriptionEl.innerHTML = articleContent.description;
 
-			// SET ARTICLE READ ALL
-			article.readAll.innerHTML = '阅读原文';
-
 		} else if ( !articleContent ) {
 
 			if ( article.articleTitle ) article.articleTitle.innerHTML = '';
-			if ( article.articleDateEl ) article.articleDateEl.innerHTML = '';
 			if ( article.articleImage ) article.articleImage.removeAttribute( 'src' );
 			if ( article.articleDescriptionEl ) article.articleDescriptionEl.innerHTML = '';
-			if ( article.readAll ) article.readAll.innerHTML = '';
 
 			// CREATE THREE EMPTY ARTICLE LINES
 			for ( var i = 0; i < 3; i++ ) createElement( 'div', 'wcp-text-line', article.articleDescriptionEl );
